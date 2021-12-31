@@ -12,6 +12,7 @@ pytz = "*"
 sqlparse = "*"
 typing-extensions = "*"
 psycopg2-binary = "*"
+dj-database-url = "*"
 
 [dev-packages]
 
