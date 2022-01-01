@@ -1,11 +1,11 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "eca1812cc329464d62f400643b41d8b425d4fb530049560107125889201f5fbd"
+            "sha256": "e5b1e379e43e990bb616d23cdcc7ebc8cd24dd03569371958727cfa5775fc73a"
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_version": "3.7"
+            "python_version": "3.9"
         },
         "sources": [
             {
@@ -41,11 +41,11 @@
         },
         "django": {
             "hashes": [
-                "sha256:074e8818b4b40acdc2369e67dcd6555d558329785408dcd25340ee98f1f1d5c4",
-                "sha256:df6f5eb3c797b27c096d61494507b7634526d4ce8d7c8ca1e57a4fb19c0738a3"
+                "sha256:59304646ebc6a77b9b6a59adc67d51ecb03c5e3d63ed1f14c909cdfda84e8010",
+                "sha256:d5a8a14da819a8b9237ee4d8c78dfe056ff6e8a7511987be627192225113ee75"
             ],
             "index": "pypi",
-            "version": "==3.2.10"
+            "version": "==4.0"
         },
         "gunicorn": {
             "hashes": [
@@ -133,6 +133,14 @@
             "index": "pypi",
             "version": "==2021.3"
         },
+        "setuptools": {
+            "hashes": [
+                "sha256:5c89b1a14a67ac5f0956f1cb0aeb7d1d3f4c8ba4e4e1ab7bf1af4933f9a2f0fe",
+                "sha256:675fcebecb43c32eb930481abf907619137547f4336206e4d673180242e1a278"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==60.2.0"
+        },
         "sqlparse": {
             "hashes": [
                 "sha256:0c00730c74263a94e5a9919ade150dfc3b19c574389985446148402998287dae",
@@ -154,6 +162,14 @@
             ],
             "index": "pypi",
             "version": "==4.0.1"
+        },
+        "tzdata": {
+            "hashes": [
+                "sha256:3eee491e22ebfe1e5cfcc97a4137cd70f092ce59144d81f8924a844de05ba8f5",
+                "sha256:68dbe41afd01b867894bbdfd54fa03f468cfa4f0086bfb4adcd8de8f24f3ee21"
+            ],
+            "markers": "sys_platform == 'win32'",
+            "version": "==2021.5"
         }
     },
     "develop": {}
