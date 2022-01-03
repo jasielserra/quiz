@@ -10,14 +10,14 @@ def home(request):
         try:
             aluno = Aluno.objects.get(email=email)
         except Aluno.DoesNotExist:
-        # Usuário não existe
-        formulario = AlunoForm(request.POST)
-        if formulario.is_valid():
-            formulario.save()
-            return redirect('/perguntas/1')
-        else:
-            contexto = {'formulario': formulario}
-            return render(request, 'base/home.html', contexto)
+            # Usuário não existe
+            formulario = AlunoForm(request.POST)
+            if formulario.is_valid():
+                formulario.save()
+                return redirect('/perguntas/1')
+            else:
+                contexto = {'formulario': formulario}
+                return render(request, 'base/home.html', contexto)
     return render(request, 'base/home.html')
 
 def perguntas(request, indice):
