@@ -13,11 +13,16 @@ def home(request):
             # Usuário não existe
             formulario = AlunoForm(request.POST)
             if formulario.is_valid():
-                formulario.save()
+                aluno = formulario.save()
+                request.session['aluno_id'] = aluno.id
                 return redirect('/perguntas/1')
             else:
                 contexto = {'formulario': formulario}
                 return render(request, 'base/home.html', contexto)
+        else:
+            request.session['aluno_id'] = aluno.id
+            return redirect('/perguntas/1')
+
     return render(request, 'base/home.html')
 
 def perguntas(request, indice):
