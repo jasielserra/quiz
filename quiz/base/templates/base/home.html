@@ -13,6 +13,7 @@
             <p class="subtitle-quiz">Quiz</p>
             <p class="subtitle-page">Dev Pro</p>
             <div class="form">
+                <p>Erros: {{ formulario.errors }} </p>
                 <form class="login-form"  method="post" action="/">
                     {%  csrf_token %}
                   <input type="text" name="nome" placeholder="NOME"/>
