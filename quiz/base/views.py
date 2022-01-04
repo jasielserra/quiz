@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.db.models import Sum
 from django.utils.timezone import now
 from quiz.base.models import Pergunta, Aluno, Resposta
 from quiz.forms import AlunoForm
@@ -50,10 +51,19 @@ def perguntas(request, indice):
                     else:
                         diferenca = now() - data_da_primeira_resposta
                         diferenca_em_segundos = int(diferenca.total_seconds())
-                        pontos = PONTUACAO_MAXIMA - diferenca_em_segundos
+                        pontos = max(PONTUACAO_MAXIMA - diferenca_em_segundos, 10)
+                        Resposta(aluno_id=aluno_id, pergunta=pergunta, pontos=pontos).save()
                     return redirect(f'/perguntas/{indice + 1}')
                 contexto['resposta_indice'] = resposta_indice
             return render(request, 'base/game.html', context=contexto)
 
 def classificacao(request):
-    return render(request, 'base/classificacao.html')
+    try:
+        aluno_id = request.session['aluno_id']
+    except KeyError:
+        return redirect('/')
+    else:
+        Resposta.objects.filter(aluno_id=aluno_id).aggregate(Sum('pontos'))
+        pontuacao_do_aluno = 10
+        context = {'pontuacao_do_aluno': pontuacao_do_aluno }
+        return render(request, 'base/classificacao.html')

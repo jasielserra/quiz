@@ -31,7 +31,7 @@ class Resposta(models.Model):
     pontos = models.IntegerField()
     respondida_em = models.DateTimeField(auto_now_add=True)
 
-    class Meta:
-        constraints = [
-            models.UniqueConstraint(fields=['aluno','pergunta'], name='resposta_unica')
-        ]
+#    class Meta:
+#        constraints = [
+#            models.UniqueConstraint(fields=['aluno','pergunta'], name='resposta_unica')
+#        ]
