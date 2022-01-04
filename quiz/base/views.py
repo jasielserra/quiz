@@ -43,7 +43,7 @@ def perguntas(request, indice):
                     # Armazenar dados da resposta
                     return redirect(f'/perguntas/{indice + 1}')
                 contexto['resposta_indice'] = resposta_indice
-    return render(request, 'base/game.html', context=contexto)
+            return render(request, 'base/game.html', context=contexto)
 
 def classificacao(request):
     return render(request, 'base/classificacao.html')
