@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from quiz.base.models import Pergunta, Aluno
+from django.utils.timezone import now
+from quiz.base.models import Pergunta, Aluno, Resposta
 from quiz.forms import AlunoForm
 
 # Create your views here.
@@ -25,6 +26,7 @@ def home(request):
 
     return render(request, 'base/home.html')
 
+PONTUACAO_MAXIMA = 1000
 def perguntas(request, indice):
     try:
         aluno_id = request.session['aluno_id']
@@ -41,6 +43,14 @@ def perguntas(request, indice):
                 resposta_indice = int(request.POST['resposta_indice'])
                 if resposta_indice == pergunta.alternativa_correta:
                     # Armazenar dados da resposta
+                    try:
+                        data_da_primeira_resposta = Resposta.objects.filter(pergunta=pergunta).order_by('respondida_em')[0].respondida_em
+                    except IndexError:
+                        Resposta(aluno_id=aluno_id, pergunta=pergunta, pontos=PONTUACAO_MAXIMA).save()
+                    else:
+                        diferenca = now() - data_da_primeira_resposta
+                        diferenca_em_segundos = int(diferenca.total_seconds())
+                        pontos = PONTUACAO_MAXIMA - diferenca_em_segundos
                     return redirect(f'/perguntas/{indice + 1}')
                 contexto['resposta_indice'] = resposta_indice
             return render(request, 'base/game.html', context=contexto)
